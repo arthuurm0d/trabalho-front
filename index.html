@@ -3,24 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trabalho: aplicação para controle de tarefas do dia a dia">
   <title>Trabalho - Controle de Tarefas</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Trabalho</h1>
-    <p>Controle de Tarefas</p>
+  <header class="cabecalho">
+    <div class="conteudo">
+      <h1>Trabalho</h1>
+      <p>Controle de Tarefas</p>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>Nova tarefa</h2>
-      <form id="form-tarefa">
+  <main class="conteudo">
+    <section class="cartao" aria-labelledby="titulo-nova-tarefa">
+      <h2 id="titulo-nova-tarefa">Nova tarefa</h2>
+      <form id="form-tarefa" novalidate>
         <label for="campo-tarefa">Descrição da tarefa</label>
-        <input type="text" id="campo-tarefa" placeholder="Digite uma tarefa">
-        <button type="submit">Adicionar</button>
+        <div class="linha-formulario">
+          <input
+            type="text"
+            id="campo-tarefa"
+            placeholder="Ex.: Estudar para a prova de sexta"
+            maxlength="100"
+            autocomplete="off"
+            aria-describedby="mensagem-erro"
+          >
+          <button type="submit" class="botao botao-principal">Adicionar</button>
+        </div>
+        <p id="mensagem-erro" class="mensagem-erro" role="alert"></p>
       </form>
     </section>
 
-    <section>
-      <h2>Minhas tarefas</h2>
+    <section class="cartao" aria-labelledby="titulo-resumo">
+      <h2 id="titulo-resumo">Resumo</h2>
+      <div class="contadores">
+        <div class="contador">
+          <span id="contador-total" class="numero numero-total">0</span>
+          <span class="rotulo">Total</span>
+        </div>
+        <div class="contador">
+          <span id="contador-pendentes" class="numero numero-pendentes">0</span>
+          <span class="rotulo">Pendentes</span>
+        </div>
+        <div class="contador">
+          <span id="contador-concluidas" class="numero numero-concluidas">0</span>
+          <span class="rotulo">Concluídas</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cartao" aria-labelledby="titulo-tarefas">
+      <h2 id="titulo-tarefas">Minhas tarefas</h2>
+
+      <div class="filtros" role="group" aria-label="Filtrar tarefas">
+        <button type="button" class="botao botao-filtro" data-filtro="todas" aria-pressed="true">Todas</button>
+        <button type="button" class="botao botao-filtro" data-filtro="pendentes" aria-pressed="false">Pendentes</button>
+        <button type="button" class="botao botao-filtro" data-filtro="concluidas" aria-pressed="false">Concluídas</button>
+      </div>
+
+      <ul id="lista-tarefas"></ul>
+      <p id="mensagem-vazia" class="mensagem-vazia" hidden></p>
+    </section>
+  </main>
+
+  <p id="mensagem-feedback" class="mensagem-feedback" role="status"></p>
+
+  <footer class="rodape">
+    <p>Trabalho TASKFLOW - Projeto acadêmico de Front-End</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
